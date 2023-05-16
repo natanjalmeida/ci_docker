@@ -1,0 +1,54 @@
+version: '3'
+services:
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        volumes:
+            - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+            - "../public:/var/www/html"
+            - "./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
+        ports:
+            - "${NGINX_PORT}:${NGINX_PORT}"
+        env_file:
+            - ".env"
+        command: /bin/sh -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+        restart: always
+        depends_on:
+            - php-fpm
+            - mysql
+
+    php-fpm:
+        container_name: php-fpm
+        build:
+            context: ./etc/php
+            dockerfile: Dockerfile
+        restart: always
+        volumes:
+            - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+            - "./etc/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
+            - "../:/var/www/html"
+
+    composer:
+        container_name: composer
+        build:
+            context: ./etc/composer
+            dockerfile: Dockerfile
+        volumes:
+            - "../:/app"
+        command: install --ignore-platform-reqs --no-scripts
+
+    mysql:
+        image: mariadb:${MYSQL_CI_VERSION}
+        container_name: mysql
+        restart: always
+        env_file:
+            - ".env"
+        environment:
+            - MYSQL_DATABASE=${MYSQL_CI_DATABASE}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_CI_ROOT_PASSWORD}
+            - MYSQL_USER=${MYSQL_CI_USER}
+            - MYSQL_PASSWORD=${MYSQL_CI_PASSWORD}
+        ports:
+            - "${MYSQL_CI_PORT}:3306"
+        volumes:
+            - "./data/db/mysql:/var/lib/mysql"
