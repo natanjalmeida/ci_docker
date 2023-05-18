@@ -5,8 +5,8 @@ services:
         container_name: nginx
         volumes:
             - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
-            - "../public:/var/www/html"
             - "./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
+            - "../:/var/www/html"
         ports:
             - "${NGINX_PORT}:${NGINX_PORT}"
         env_file:
@@ -27,15 +27,6 @@ services:
             - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
             - "./etc/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
             - "../:/var/www/html"
-
-    composer:
-        container_name: composer
-        build:
-            context: ./etc/composer
-            dockerfile: Dockerfile
-        volumes:
-            - "../:/app"
-        command: install --ignore-platform-reqs --no-scripts
 
     mysql:
         image: mariadb:${MYSQL_CI_VERSION}
