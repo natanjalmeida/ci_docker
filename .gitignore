@@ -33,5 +33,3 @@ node_modules
 *.sublime-project
 /tests/tests/
 /tests/results/
-docker/data/db/mysql/aria_log_control
-docker/data/db/mysql/aria_log.00000001
