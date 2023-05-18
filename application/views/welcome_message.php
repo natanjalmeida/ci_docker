@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="">
 
 <head>
 	<meta charset="utf-8">
@@ -85,7 +85,7 @@
 <body>
 
 	<div id="container">
-		<h1>Bem vindo ao Projeto ASTEC :: Codeignitergit !</h1>
+		<h1>Bem vindo ao Codeigniter | Rodando em Docker!</h1>
 
 		<div id="body">
 			<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
