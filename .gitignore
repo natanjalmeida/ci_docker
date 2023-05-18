@@ -1,10 +1,8 @@
 .DS_Store
 
 application/cache/*
-!application/cache/index.html
 
 application/logs/*
-!application/logs/index.html
 
 !application/*/.htaccess
 
@@ -19,7 +17,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 docker/data/
 node_modules
-
 # IDE Files
 #-------------------------
 /nbproject/
@@ -33,3 +30,4 @@ node_modules
 *.sublime-project
 /tests/tests/
 /tests/results/
+
