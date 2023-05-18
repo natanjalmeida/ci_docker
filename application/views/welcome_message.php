@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
 	<meta charset="utf-8">
 	<title>Projeto Astec</title>
-
+	<link rel="stylesheet" href="./assets/dist/css/bootstrap.css">
 	<style type="text/css">
 		::selection {
 			background-color: #E13300;
@@ -17,7 +17,7 @@
 		}
 
 		body {
-			background-color: #fff;
+			/* background-color: #fff; */
 			margin: 40px;
 			font: 13px/20px normal Helvetica, Arial, sans-serif;
 			color: #4F5155;
@@ -85,7 +85,7 @@
 <body>
 
 	<div id="container">
-		<h1>Bem vindo ao Projeto ASTEC :: Codeigniter!</h1>
+		<h1>Bem vindo ao Projeto ASTEC :: Codeignitergit !</h1>
 
 		<div id="body">
 			<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
